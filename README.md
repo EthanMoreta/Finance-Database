@@ -1,6 +1,5 @@
 # Finance-Database
 
-Finance Database Project
 
 This project is a comprehensive financial database system designed to help users manage and track their finances. It allows users to store and access information about their bank accounts, credit cards, earnings, expenses, and transactions, all within an organized database. The system also provides basic analysis functions to support users in understanding their financial status, such as balance calculations for accounts and specific records of transactions. Additionally, the project includes an integrated suggestion feature, which analyzes financial data to offer personalized recommendations, helping users make better financial decisions.
 
