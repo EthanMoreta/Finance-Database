@@ -1,20 +1,20 @@
-create database Finance;
-
-use finance;
-
 -- drop statements
 
 drop database Finance;
 
-drop tables register, record, earning, expense, movement,credit_card, bank_account;
+-- drop tables register, record, earning, expense, movement,credit_card, bank_account;
 
-drop function get_account_balance;
+-- drop function get_account_balance;
 
-drop function get_record_balance;
+-- drop function get_record_balance;
 
-drop view Bank;
+-- drop view Bank;
 
 -- create tables
+
+create database Finance;
+
+use finance;
 
 create table bank_account (
 	account_number int,
@@ -139,7 +139,7 @@ INSERT INTO credit_card VALUES
 (9, 2122, 'Credit', 'Sophia', 'Taylor', '2029-06-05', 9),
 (10, 2324, 'Debit', 'James', 'Anderson', '2027-05-03', 10);
 
-SELECT get_account_balance(1);
+-- SELECT get_account_balance(1);
 
 insert into movement values
 (1,21.21,'2024-10-04',1);
@@ -162,7 +162,7 @@ insert into register values
 insert into register values
 (2,1);
 
-SELECT get_record_balance('Test');
+-- SELECT get_record_balance('Test');
 
 -- Deleting specific entries from bank_account and credit_card tables
 -- Deleting based off account_number
@@ -185,6 +185,9 @@ DELETE FROM credit_card WHERE first_name = 'John' AND last_name = 'Doe';
 -- Verify remaining records by querying the tables
 SELECT * FROM bank_account;
 SELECT * FROM credit_card;
+
+-- Update example, change every Citibank account into a Checking account
+UPDATE bank_account SET account_type = 'Checking' WHERE bank = 'Citibank';
 
 -- join examples
 
