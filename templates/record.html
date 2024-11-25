@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Records</title>
+</head>
+<body>
+    <h1>Records</h1>
+    
+    <h3>Existing Records</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Record Name</th>
+                <th>Starting Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.record_name }}</td>
+                <td>{{ record.start_date }}</td>
+                <td>
+                    <form action="/delete_record/{{ record.record_id }}" method="GET" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                    <!-- Actualización pendiente con otro formulario -->
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+<br>
+<a href="/">
+    <button type="button">Back to menu</button>
+</a>

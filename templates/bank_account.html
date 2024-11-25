@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Accounts</title>
+</head>
+<body>
+    <h1>Bank Accounts</h1>
+    
+    <!-- Formulario para agregar o actualizar -->
+    <form action="/add" method="POST">
+        <h3>Add New Account</h3>
+        <label>Account Number:</label>
+        <input type="number" name="account_number" required><br>
+        <label>First Name:</label>
+        <input type="text" name="first_name" required><br>
+        <label>Last Name:</label>
+        <input type="text" name="last_name" required><br>
+        <label>Bank:</label>
+        <input type="text" name="bank" required><br>
+        <label>Opening Date:</label>
+        <input type="date" name="opening_date" required><br>
+        <label>Account Type:</label>
+        <input type="text" name="account_type" required><br>
+        <button type="submit">Add Account</button>
+    </form>
+    
+    <h3>Existing Accounts</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Account Number</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Bank</th>
+                <th>Opening Date</th>
+                <th>Account Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for account in accounts %}
+            <tr>
+                <td>{{ account.account_number }}</td>
+                <td>{{ account.first_name }}</td>
+                <td>{{ account.last_name }}</td>
+                <td>{{ account.bank }}</td>
+                <td>{{ account.opening_date }}</td>
+                <td>{{ account.account_type }}</td>
+                <td>
+                    <form action="/delete_account/{{ account.account_number }}" method="GET" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                    <!-- Actualización pendiente con otro formulario -->
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+<br>
+<a href="/">
+    <button type="button">Back to menu</button>
+</a>
