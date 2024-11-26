@@ -14,7 +14,8 @@
             <tr>
                 <th>Record Name</th>
                 <th>Starting Date</th>
-                <th>Actions</th>
+                <th>View</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +23,12 @@
             <tr>
                 <td>{{ record.record_name }}</td>
                 <td>{{ record.start_date }}</td>
+                <td>
+                    <form action="/view_record/{{ record.record_id }}" method="GET" style="display:inline;">
+                        <button type="submit">View</button>
+                    </form>
+                    <!-- Actualización pendiente con otro formulario -->
+                </td>
                 <td>
                     <form action="/delete_record/{{ record.record_id }}" method="GET" style="display:inline;">
                         <button type="submit">Delete</button>

@@ -97,6 +97,18 @@ def delete_record(record_id):
     conn.close()
     return redirect('/record')
 
+# Ruta para eliminar una tarjeta
+@app.route('/view_record/<int:record_id>')
+def view_record(record_id):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM movement, register WHERE movement_id = my_movement and my_record = %s", (record_id,))
+    movements = cursor.fetchall()
+    cursor.execute("SELECT record_name FROM record WHERE record_id = %s", (record_id,))
+    record_name = cursor.fetchone()
+    conn.close()
+    return render_template('movement.html', movements=movements, record_name=record_name)
+
 # Ruta para actualizar un registro
 @app.route('/update', methods=['POST'])
 def update_account():
