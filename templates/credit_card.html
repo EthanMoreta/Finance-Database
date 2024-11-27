@@ -9,58 +9,15 @@
     <h1>Credit Cards</h1>
     
     <!-- Formulario para agregar o actualizar -->
-    <form action="/add" method="POST">
-        <h3>Add New Card</h3>
-        <label>Card Number:</label>
-        <input type="number" name="card_number" required><br>
-        <label>Security Code:</label>
-        <input type="number" name="security_code" required><br>
-        <label>Card Type:</label>
-        <input type="text" name="card_type" required><br>
+    <form action="/credit_card_search" method="POST">
+        <h3>Search Cards</h3>
         <label>First Name:</label>
         <input type="text" name="first_name" required><br>
         <label>Last Name:</label>
         <input type="text" name="last_name" required><br>
-        <label>Expiration Date:</label>
-        <input type="date" name="expiration_date" required><br>
-        <label>Account Number:</label>
-        <input type="number" name="account_number" required><br>
-        <button type="submit">Add Account</button>
+        <button type="submit">Search</button>
     </form>
     
-    <h3>Existing Cards</h3>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Card Number</th>
-                <th>Security Code</th>
-                <th>Card Type</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Expiration Date</th>
-                <th>Account Number</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for card in cards %}
-            <tr>
-                <td>{{ card.card_number }}</td>
-                <td>{{ card.security_code }}</td>
-                <td>{{ card.card_type }}</td>
-                <td>{{ card.first_name }}</td>
-                <td>{{ card.last_name }}</td>
-                <td>{{ card.expiration_date }}</td>
-                <td>{{ card.my_account }}</td>
-                <td>
-                    <form action="/delete_card/{{ card.card_number }}" method="GET" style="display:inline;">
-                        <button type="submit">Delete</button>
-                    </form>
-                    <!-- Actualización pendiente con otro formulario -->
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 </body>
 </html>
 <br>

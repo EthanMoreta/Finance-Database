@@ -36,6 +36,19 @@ def credit_card():
     conn.close()
     return render_template('credit_card.html', cards=cards)
 
+# Ruta para mostrar las tarjetas de crédito
+@app.route('/credit_card_search', methods=['POST'])
+def credit_card_search():
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM credit_card WHERE first_name = %s AND last_name = %s", (first_name,last_name))
+    cards = cursor.fetchall()
+    conn.close()
+    return render_template('credit_card_search.html', cards=cards)
+
 # Ruta para mostrar los records
 @app.route('/record')
 def record():
