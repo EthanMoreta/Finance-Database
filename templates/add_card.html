@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Cards</title>
+</head>
+<body>
+    <h1>Credit Cards</h1>
+    
+    <form action="/add_card_form" method="POST">
+        <h3>Add New Card</h3>
+        <label>Card Number:</label>
+        <input type="number" name="card_number" required><br>
+        <label>Security Number:</label>
+        <input type="number" name="security_code" required><br>
+        <label>Card Type:</label>
+        <input type="text" name="card_type" required><br>
+        <label>First Name:</label>
+        <input type="text" name="first_name" required><br>
+        <label>Last Name:</label>
+        <input type="text" name="last_name" required><br>
+        <label>Expiration Date:</label>
+        <input type="date" name="expiration_date" required><br>
+        <label>My Account:</label>
+        <input type="number" name="my_account" required><br>
+        <button type="submit">Add Card</button>
+    </form>
+    
+</body>
+</html>
+<br>
+<a href="/credit_card">
+    <button type="button">Back to cards</button>
+</a>

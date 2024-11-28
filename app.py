@@ -29,12 +29,7 @@ def bank_account():
 # Ruta para mostrar las tarjetas de crédito
 @app.route('/credit_card')
 def credit_card():
-    conn = mysql.connector.connect(**db_config)
-    cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM credit_card ")
-    cards = cursor.fetchall()
-    conn.close()
-    return render_template('credit_card.html', cards=cards)
+    return render_template('credit_card.html')
 
 # Ruta para mostrar las tarjetas de crédito
 @app.route('/credit_card_search', methods=['POST'])
@@ -60,7 +55,7 @@ def record():
     return render_template('record.html', records=records)
 
 # Ruta para agregar un nuevo registro
-@app.route('/add', methods=['POST'])
+@app.route('/add_account', methods=['POST'])
 def add_account():
     account_number = request.form['account_number']
     first_name = request.form['first_name']
@@ -79,6 +74,31 @@ def add_account():
     conn.commit()
     conn.close()
     return redirect('/')
+
+@app.route('/add_card')
+def add_card():
+    return render_template('add_card.html')
+
+@app.route('/add_card_form', methods=['POST'])
+def add_card_form():
+    card_number = request.form['card_number']
+    security_code = request.form['security_code']
+    card_type = request.form['card_type']
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+    expiration_date = request.form['expiration_date']
+    my_account = request.form['my_account']
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    query = """
+        INSERT INTO credit_card (card_number, security_code, card_type, first_name, last_name, expiration_date, my_account)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+    """
+    cursor.execute(query, (card_number, security_code, card_type, first_name, last_name, expiration_date, my_account))
+    conn.commit()
+    conn.close()
+    return redirect('/credit_card')
 
 # Ruta para eliminar un registro
 @app.route('/delete_account/<int:account_number>')
