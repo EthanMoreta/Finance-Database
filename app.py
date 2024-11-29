@@ -19,12 +19,26 @@ def index():
 # Ruta para mostrar todos los registros
 @app.route('/bank_account')
 def bank_account():
+    return render_template('bank_account.html')
+
+@app.route('/bank_account_search', methods=['POST'])
+def bank_account_search():
+    first_name = request.form['first_name']
+    last_name = request.form['last_name']
+
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM bank_account")
+    cursor.execute("SELECT * FROM bank_account WHERE first_name = %s AND last_name = %s", (first_name,last_name))
     accounts = cursor.fetchall()
+    balances = []
+    for account in accounts:
+        cursor.execute("SELECT get_account_balance(%s)", (account['account_number'],))
+        balances.append(cursor.fetchone())
+        conn.close()
+    balances = [list(item.values())[0] for item in balances]
+
     conn.close()
-    return render_template('bank_account.html', accounts=accounts)
+    return render_template('bank_account_search.html', accounts=accounts, balances=balances)
 
 # Ruta para mostrar las tarjetas de crédito
 @app.route('/credit_card')
@@ -51,12 +65,20 @@ def record():
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM record ")
     records = cursor.fetchall()
-    conn.close()
-    return render_template('record.html', records=records)
+    balances = []
+    for record in records:
+        cursor.execute("SELECT get_record_balance(%s)", (record['record_name'],))
+        balances.append(cursor.fetchone())
+        conn.close()
+    balances = [list(item.values())[0] for item in balances]
+    return render_template('record.html', records=records, balances=balances)
 
-# Ruta para agregar un nuevo registro
-@app.route('/add_account', methods=['POST'])
+@app.route('/add_account')
 def add_account():
+    return render_template('add_account.html')
+
+@app.route('/add_account_form', methods=['POST'])
+def add_account_form():
     account_number = request.form['account_number']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
@@ -73,7 +95,7 @@ def add_account():
     cursor.execute(query, (account_number, first_name, last_name, bank, opening_date, account_type))
     conn.commit()
     conn.close()
-    return redirect('/')
+    return redirect('/bank_account')
 
 @app.route('/add_card')
 def add_card():
@@ -108,7 +130,7 @@ def delete_account(account_number):
     cursor.execute("DELETE FROM bank_account WHERE account_number = %s", (account_number,))
     conn.commit()
     conn.close()
-    return redirect('/')
+    return redirect('/bank_account')
 
 # Ruta para eliminar una tarjeta
 @app.route('/delete_card/<int:card_number>')

@@ -16,6 +16,7 @@
                 <th>Starting Date</th>
                 <th>View</th>
                 <th>Delete</th>
+                <th>Balance</th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +36,9 @@
                     </form>
                     <!-- Actualización pendiente con otro formulario -->
                 </td>
+            {% endfor %}
+            {% for balance in balances %}
+            <td>{{ balance }}</td>
             </tr>
             {% endfor %}
         </tbody>
