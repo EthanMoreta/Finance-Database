@@ -1,4 +1,2 @@
-- Make an option to check and add movements
-- Allow to add new records
 - Allow to add movements to records
 - Add some more features and start to style with css

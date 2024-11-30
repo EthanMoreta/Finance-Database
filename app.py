@@ -34,7 +34,7 @@ def bank_account_search():
     for account in accounts:
         cursor.execute("SELECT get_account_balance(%s)", (account['account_number'],))
         balances.append(cursor.fetchone())
-        conn.close()
+    conn.close()
     balances = [list(item.values())[0] for item in balances]
 
     conn.close()
@@ -84,7 +84,7 @@ def record():
     for record in records:
         cursor.execute("SELECT get_record_balance(%s)", (record['record_name'],))
         balances.append(cursor.fetchone())
-        conn.close()
+    conn.close()
     balances = [list(item.values())[0] for item in balances]
     return render_template('record.html', records=records, balances=balances)
 
@@ -160,6 +160,29 @@ def add_movement_form():
     conn.commit()
     conn.close()
     return redirect('/movement')
+
+@app.route('/add_record')
+def add_record():
+    return render_template('add_record.html')
+
+@app.route('/add_record_form', methods=['POST'])
+def add_record_form():
+    record_name = request.form['record_name']
+    start_date = request.form['date']
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    query = """ SELECT MAX(record_id) FROM record """
+    cursor.execute(query)
+    record_id = cursor.fetchone()
+    query = """
+        INSERT INTO record (record_id, record_name, start_date)
+        VALUES (%s, %s, %s)
+    """
+    cursor.execute(query, (record_id[0]+1, record_name, start_date))
+    conn.commit()
+    conn.close()
+    return redirect('/record')
 
 # Ruta para eliminar un registro
 @app.route('/delete_account/<int:account_number>')

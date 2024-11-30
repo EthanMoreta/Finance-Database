@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record</title>
+</head>
+<body>
+    <h1>Record</h1>
+    
+    <form action="/add_record_form" method="POST">
+        <h3>Add Record</h3>
+        <label>Record Name:</label>
+        <input type="text" name="record_name" required><br>
+        <label>Starting Date:</label>
+        <input type="date" name="date" required><br>
+        <button type="submit">Add Record</button>
+    </form>
+    
+</body>
+</html>
+<br>
+<a href="/record">
+    <button type="button">Back to records</button>
+</a>
