@@ -58,6 +58,21 @@ def credit_card_search():
     conn.close()
     return render_template('credit_card_search.html', cards=cards)
 
+@app.route('/movement')
+def movement():
+    return render_template('movement.html')
+
+@app.route('/movement_search', methods=['POST'])
+def movement_search():
+    account_number = request.form['account_number']
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM movement WHERE my_account = %s", (account_number,))
+    movements = cursor.fetchall()
+    conn.close()
+    return render_template('movement_search.html', movements=movements)
+
 # Ruta para mostrar los records
 @app.route('/record')
 def record():
@@ -122,6 +137,30 @@ def add_card_form():
     conn.close()
     return redirect('/credit_card')
 
+@app.route('/add_movement')
+def add_movement():
+    return render_template('add_movement.html')
+
+@app.route('/add_movement_form', methods=['POST'])
+def add_movement_form():
+    amount = request.form['amount']
+    date = request.form['date']
+    account_number = request.form['account_number']
+
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    query = """ SELECT MAX(movement_id) FROM movement """
+    cursor.execute(query)
+    movement_id = cursor.fetchone()
+    query = """
+        INSERT INTO movement (movement_id, amount, movement_date, my_account)
+        VALUES (%s, %s, %s, %s)
+    """
+    cursor.execute(query, (movement_id[0]+1, amount, date, account_number))
+    conn.commit()
+    conn.close()
+    return redirect('/movement')
+
 # Ruta para eliminar un registro
 @app.route('/delete_account/<int:account_number>')
 def delete_account(account_number):
@@ -152,6 +191,15 @@ def delete_record(record_id):
     conn.close()
     return redirect('/record')
 
+@app.route('/delete_movement/<int:movement_id>')
+def delete_movement(movement_id):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM movement WHERE movement_id = %s", (movement_id,))
+    conn.commit()
+    conn.close()
+    return redirect('/movement')
+
 # Ruta para eliminar una tarjeta
 @app.route('/view_record/<int:record_id>')
 def view_record(record_id):
@@ -162,7 +210,7 @@ def view_record(record_id):
     cursor.execute("SELECT record_name FROM record WHERE record_id = %s", (record_id,))
     record_name = cursor.fetchone()
     conn.close()
-    return render_template('movement.html', movements=movements, record_name=record_name)
+    return render_template('movements_list.html', movements=movements, record_name=record_name)
 
 # Ruta para actualizar un registro
 @app.route('/update', methods=['POST'])

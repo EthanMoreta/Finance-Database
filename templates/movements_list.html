@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Accounts</title>
+</head>
+<body>
+    <h1>Record: {{record_name.record_name}}</h1>
+    
+    <h3>Movements</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Movement</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Bank Account</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movement in movements %}
+            <tr>
+                <td>{{ movement.movement_id }}</td>
+                <td>{{ movement.amount }}</td>
+                <td>{{ movement.movement_date }}</td>
+                <td>{{ movement.my_account }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+<br>
+<a href="/record">
+    <button type="button">Back to records</button>
+</a>

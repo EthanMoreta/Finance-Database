@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movements</title>
+</head>
+<body>
+    <h1>Movements</h1>
+    
+    <form action="/add_movement_form" method="POST">
+        <h3>Add Movement</h3>
+        <label>Amount:</label>
+        <input type="number" name="amount" required><br>
+        <label>Movement Date:</label>
+        <input type="date" name="date" required><br>
+        <label>Account Number:</label>
+        <input type="number" name="account_number" required><br>
+        <button type="submit">Add Movement</button>
+    </form>
+    
+</body>
+</html>
+<br>
+<a href="/movement">
+    <button type="button">Back to movements</button>
+</a>
