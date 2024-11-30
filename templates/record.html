@@ -24,6 +24,7 @@
             <tr>
                 <td>{{ record.record_name }}</td>
                 <td>{{ record.start_date }}</td>
+                <td>{{ record.balance }}</td>
                 <td>
                     <form action="/view_record/{{ record.record_id }}" method="GET" style="display:inline;">
                         <button type="submit">View</button>
@@ -36,9 +37,6 @@
                     </form>
                     <!-- Actualización pendiente con otro formulario -->
                 </td>
-                {% endfor %}
-                {% for balance in balances %}
-                <td>{{ balance }}</td>
             </tr>
             {% endfor %}
         </tbody>

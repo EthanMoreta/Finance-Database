@@ -31,15 +31,13 @@
                 <td>{{ account.bank }}</td>
                 <td>{{ account.opening_date }}</td>
                 <td>{{ account.account_type }}</td>
+                <td>{{ account.balance }}</td>
                 <td>
                     <form action="/delete_account/{{ account.account_number }}" method="GET" style="display:inline;">
                         <button type="submit">Delete</button>
                     </form>
                     <!-- Actualización pendiente con otro formulario -->
                 </td>
-                {% endfor %}
-                {% for balance in balances %}
-                <td>{{ balance }}</td>
             </tr>
             {% endfor %}
         </tbody>

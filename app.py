@@ -28,17 +28,13 @@ def bank_account_search():
 
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM bank_account WHERE first_name = %s AND last_name = %s", (first_name,last_name))
+    cursor.execute("SELECT * FROM bank_account WHERE first_name = %s AND last_name = %s", (first_name, last_name))
     accounts = cursor.fetchall()
-    balances = []
     for account in accounts:
-        cursor.execute("SELECT get_account_balance(%s)", (account['account_number'],))
-        balances.append(cursor.fetchone())
+        cursor.execute("SELECT get_account_balance(%s) AS balance", (account['account_number'],))
+        account['balance'] = cursor.fetchone()['balance']
     conn.close()
-    balances = [list(item.values())[0] for item in balances]
-
-    conn.close()
-    return render_template('bank_account_search.html', accounts=accounts, balances=balances)
+    return render_template('bank_account_search.html', accounts=accounts)
 
 # Ruta para mostrar las tarjetas de crédito
 @app.route('/credit_card')
@@ -80,13 +76,11 @@ def record():
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM record ")
     records = cursor.fetchall()
-    balances = []
     for record in records:
-        cursor.execute("SELECT get_record_balance(%s)", (record['record_name'],))
-        balances.append(cursor.fetchone())
+        cursor.execute("SELECT get_record_balance(%s) AS balance", (record['record_name'],))
+        record['balance'] = cursor.fetchone()['balance']
     conn.close()
-    balances = [list(item.values())[0] for item in balances]
-    return render_template('record.html', records=records, balances=balances)
+    return render_template('record.html', records=records)
 
 @app.route('/add_account')
 def add_account():
