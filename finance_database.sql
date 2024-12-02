@@ -105,7 +105,7 @@ BEGIN
 
     SELECT COALESCE(SUM(amount), 0) INTO total_balance
     FROM movement
-    WHERE (SELECT my_record FROM register WHERE my_movement = movement_id) = (SELECT record_id FROM record WHERE record_name = name_record);
+    WHERE (SELECT record_id FROM record WHERE record_name = name_record ORDER BY record_id) IN (SELECT my_record FROM register WHERE my_movement = movement_id ORDER BY my_record);
 
     RETURN total_balance;
 END$$
