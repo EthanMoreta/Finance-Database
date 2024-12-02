@@ -4,6 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movements</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #343434;
+        }
+        .button {
+            background-color: #1e1e1e;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #181818;
+        }
+        form, a {
+            text-align: center;
+        }
+        .inputs {
+            background-color: #1e1e1e;
+            color: white;
+        }
+        .labels {
+            color: white;
+        }
+        h1 {
+            color: #FFD700;
+        }
+        h3 {
+            color: #FFD700;
+        }
+    </style>
 </head>
 <body>
     <h1>Movements</h1>
@@ -11,19 +51,20 @@
     <!-- Formulario para agregar o actualizar -->
     <form action="/movement_search" method="POST">
         <h3>Search Movements from Account</h3>
-        <label>Account Number:</label>
-        <input type="number" name="account_number" required><br>
-        <button type="submit">Search</button>
+        <label class="labels">Account Number:</label>
+        <input type="number" name="account_number" required class="inputs"><br>
+        <br>
+        <button type="submit" class="button">Search</button>
     </form>
     
 </body>
 </html>
 <br>
 <a href="/add_movement">
-    <button type="button">Add Movement</button>
+    <button type="button" class="button">Add Movement</button>
 </a>
 <br>
 <br>
 <a href="/">
-    <button type="button">Back to menu</button>
+    <button type="button" class="button">Back to menu</button>
 </a>

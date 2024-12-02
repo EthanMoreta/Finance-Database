@@ -4,6 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Records</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #343434;
+        }
+        .button {
+            background-color: #1e1e1e;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #181818;
+        }
+        form, a {
+            text-align: center;
+        }
+        .inputs {
+            background-color: #1e1e1e;
+            color: white;
+        }
+        .labels {
+            color: white;
+        }
+        h1 {
+            color: #FFD700;
+        }
+        h3 {
+            color: #FFD700;
+        }
+        td {
+            color: white;
+        }
+        th {
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <h1>Records</h1>
@@ -27,13 +73,13 @@
                 <td>{{ record.balance }}</td>
                 <td>
                     <form action="/view_record/{{ record.record_id }}" method="GET" style="display:inline;">
-                        <button type="submit">View</button>
+                        <button type="submit" class="button">View</button>
                     </form>
                     <!-- Actualización pendiente con otro formulario -->
                 </td>
                 <td>
                     <form action="/delete_record/{{ record.record_id }}" method="GET" style="display:inline;">
-                        <button type="submit">Delete</button>
+                        <button type="submit" class="button">Delete</button>
                     </form>
                     <!-- Actualización pendiente con otro formulario -->
                 </td>
@@ -45,10 +91,10 @@
 </html>
 <br>
 <a href="/add_record">
-    <button type="button">Add Record</button>
+    <button type="button" class="button">Add Record</button>
 </a>
 <br>
 <br>
 <a href="/">
-    <button type="button">Back to menu</button>
+    <button type="button" class="button">Back to menu</button>
 </a>

@@ -4,6 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #343434;
+        }
+        .button {
+            background-color: #1e1e1e;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #181818;
+        }
+        form, a {
+            text-align: center;
+        }
+        .inputs {
+            background-color: #1e1e1e;
+            color: white;
+        }
+        .labels {
+            color: white;
+        }
+        h1 {
+            color: #FFD700;
+        }
+        h3 {
+            color: #FFD700;
+        }
+    </style>
 </head>
 <body>
     <h1>Register Movement</h1>
@@ -11,14 +51,15 @@
     <!-- Formulario para agregar o actualizar -->
     <form action="/register_movement_form/{{movement_id}}" method="POST">
         <h3>Select Record to Register Movement</h3>
-        <label>Record Name:</label>
-        <input type="text" name="record_name" required><br>
-        <button type="submit">Register</button>
+        <label class="labels">Record Name:</label>
+        <input type="text" name="record_name" required class="inputs"><br>
+        <br>
+        <button type="submit" class="button">Register</button>
     </form>
     
+    <br>
+    <a href="/movement">
+        <button type="button" class="button">Back to movements</button>
+    </a>
 </body>
-</html>
-<br>
-<a href="/movement">
-    <button type="button">Back to movements</button>
-</a>
+</html></a>

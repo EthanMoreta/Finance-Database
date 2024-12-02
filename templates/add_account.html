@@ -4,30 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank Account</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #343434;
+        }
+        .button {
+            background-color: #1e1e1e;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #181818;
+        }
+        form, a {
+            text-align: center;
+        }
+        .inputs {
+            background-color: #1e1e1e;
+            color: white;
+        }
+        .labels {
+            color: white;
+        }
+        h1 {
+            color: #FFD700;
+        }
+        h3 {
+            color: #FFD700;
+        }
+    </style>
 </head>
 <body>
     <h1>Bank Account</h1>
     
     <form action="/add_account_form" method="POST">
         <h3>Add New Account</h3>
-        <label>Account Number:</label>
-        <input type="number" name="account_number" required><br>
-        <label>First Name:</label>
-        <input type="text" name="first_name" required><br>
-        <label>Last Name:</label>
-        <input type="text" name="last_name" required><br>
-        <label>Bank:</label>
-        <input type="text" name="bank" required><br>
-        <label>Opening Date:</label>
-        <input type="date" name="opening_date" required><br>
-        <label>Account Type:</label>
-        <input type="text" name="account_type" required><br>
-        <button type="submit">Add Account</button>
+        <label class="labels">Account Number:</label>
+        <input type="number" name="account_number" required class="inputs"><br>
+        <label class="labels">First Name:</label>
+        <input type="text" name="first_name" required class="inputs"><br>
+        <label class="labels">Last Name:</label>
+        <input type="text" name="last_name" required class="inputs"><br>
+        <label class="labels">Bank:</label>
+        <input type="text" name="bank" required class="inputs"><br>
+        <label class="labels">Opening Date:</label>
+        <input type="date" name="opening_date" required class="inputs"><br>
+        <label class="labels">Account Type:</label>
+        <input type="text" name="account_type" required class="inputs"><br>
+        <br>
+        <button type="submit" class="button">Add Account</button>
     </form>
     
 </body>
 </html>
 <br>
 <a href="/bank_account">
-    <button type="button">Back to accounts</button>
+    <button type="button" class="button">Back to accounts</button>
 </a>

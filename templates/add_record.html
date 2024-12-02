@@ -4,22 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Record</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #343434;
+        }
+        .button {
+            background-color: #1e1e1e;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #181818;
+        }
+        form, a {
+            text-align: center;
+        }
+        .inputs {
+            background-color: #1e1e1e;
+            color: white;
+        }
+        .labels {
+            color: white;
+        }
+        h1 {
+            color: #FFD700;
+        }
+        h3 {
+            color: #FFD700;
+        }
+    </style>
 </head>
 <body>
     <h1>Record</h1>
     
     <form action="/add_record_form" method="POST">
         <h3>Add Record</h3>
-        <label>Record Name:</label>
-        <input type="text" name="record_name" required><br>
-        <label>Starting Date:</label>
-        <input type="date" name="date" required><br>
-        <button type="submit">Add Record</button>
+        <label class="labels">Record Name:</label>
+        <input type="text" name="record_name" required class="inputs"><br>
+        <label class="labels">Starting Date:</label>
+        <input type="date" name="date" required class="inputs"><br>
+        <br>
+        <button type="submit" class="button">Add Record</button>
     </form>
     
 </body>
 </html>
 <br>
 <a href="/record">
-    <button type="button">Back to records</button>
+    <button type="button" class="button">Back to records</button>
 </a>

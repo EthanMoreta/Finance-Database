@@ -4,6 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank Accounts</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #343434;
+        }
+        .button {
+            background-color: #1e1e1e;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #181818;
+        }
+        form, a {
+            text-align: center;
+        }
+        .inputs {
+            background-color: #1e1e1e;
+            color: white;
+        }
+        .labels {
+            color: white;
+        }
+        h1 {
+            color: #FFD700;
+        }
+        h3 {
+            color: #FFD700;
+        }
+        td {
+            color: white;
+        }
+        th {
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <h1>Bank Accounts</h1>
@@ -34,7 +80,7 @@
                 <td>{{ account.balance }}</td>
                 <td>
                     <form action="/delete_account/{{ account.account_number }}" method="GET" style="display:inline;">
-                        <button type="submit">Delete</button>
+                        <button type="submit" class="button">Delete</button>
                     </form>
                     <!-- Actualización pendiente con otro formulario -->
                 </td>
@@ -46,5 +92,5 @@
 </html>
 <br>
 <a href="/bank_account">
-    <button type="button">Back to accounts</button>
+    <button type="button" class="button">Back to accounts</button>
 </a>

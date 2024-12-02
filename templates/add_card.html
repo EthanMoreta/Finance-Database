@@ -4,32 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Credit Cards</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #343434;
+        }
+        .button {
+            background-color: #1e1e1e;
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #181818;
+        }
+        form, a {
+            text-align: center;
+        }
+        .inputs {
+            background-color: #1e1e1e;
+            color: white;
+        }
+        .labels {
+            color: white;
+        }
+        h1 {
+            color: #FFD700;
+        }
+        h3 {
+            color: #FFD700;
+        }
+    </style>
 </head>
 <body>
     <h1>Credit Cards</h1>
     
     <form action="/add_card_form" method="POST">
         <h3>Add New Card</h3>
-        <label>Card Number:</label>
-        <input type="number" name="card_number" required><br>
-        <label>Security Number:</label>
-        <input type="number" name="security_code" required><br>
-        <label>Card Type:</label>
-        <input type="text" name="card_type" required><br>
-        <label>First Name:</label>
-        <input type="text" name="first_name" required><br>
-        <label>Last Name:</label>
-        <input type="text" name="last_name" required><br>
-        <label>Expiration Date:</label>
-        <input type="date" name="expiration_date" required><br>
-        <label>My Account:</label>
-        <input type="number" name="my_account" required><br>
-        <button type="submit">Add Card</button>
+        <label class="labels">Card Number:</label>
+        <input type="number" name="card_number" required class="inputs"><br>
+        <label class="labels">Security Number:</label>
+        <input type="number" name="security_code" required class="inputs"><br>
+        <label class="labels">Card Type:</label>
+        <input type="text" name="card_type" required class="inputs"><br>
+        <label class="labels">First Name:</label>
+        <input type="text" name="first_name" required class="inputs"><br>
+        <label class="labels">Last Name:</label>
+        <input type="text" name="last_name" required class="inputs"><br>
+        <label class="labels">Expiration Date:</label>
+        <input type="date" name="expiration_date" required class="inputs"><br>
+        <label class="labels">My Account:</label>
+        <input type="number" name="my_account" required class="inputs"><br>
+        <br>
+        <button type="submit" class="button">Add Card</button>
     </form>
     
 </body>
 </html>
 <br>
 <a href="/credit_card">
-    <button type="button">Back to cards</button>
+    <button type="button" class="button">Back to cards</button>
 </a>
