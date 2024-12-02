@@ -15,7 +15,8 @@
                 <th>Amount</th>
                 <th>Date</th>
                 <th>Account</th>
-                <th>Actions</th>
+                <th>Delete</th>
+                <th>Register</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,11 @@
                     </form>
                     <!-- Actualización pendiente con otro formulario -->
                 </td>
+                <td>
+                    <form action="/register_movement/{{ movement.movement_id }}" method="GET" style="display:inline;">
+                        <button type="submit">Register</button>
+                    </form>
+                </td>    
             </tr>
             {% endfor %}
         </tbody>

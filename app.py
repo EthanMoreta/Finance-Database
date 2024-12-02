@@ -7,7 +7,7 @@ app = Flask(__name__)
 db_config = {
     'host': 'localhost',
     'user': 'root',  # Cambia esto
-    'password': '',  # Cambia esto
+    'password': 'nicoPau2',  # Cambia esto
     'database': 'finance'
 }
 
@@ -229,27 +229,27 @@ def view_record(record_id):
     conn.close()
     return render_template('movements_list.html', movements=movements, record_name=record_name)
 
-# Ruta para actualizar un registro
-@app.route('/update', methods=['POST'])
-def update_account():
-    account_number = request.form['account_number']
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
-    bank = request.form['bank']
-    opening_date = request.form['opening_date']
-    account_type = request.form['account_type']
+@app.route('/register_movement/<int:movement_id>')
+def register_movement(movement_id):
+    return render_template('register.html', movement_id=movement_id)
+
+@app.route('/register_movement_form/<int:movement_id>', methods=['POST'])
+def register_movement_form(movement_id):
+    record_name = request.form['record_name']
 
     conn = mysql.connector.connect(**db_config)
     cursor = conn.cursor()
+    query = """ SELECT record_id FROM record WHERE record_name = %s """
+    cursor.execute(query, (record_name,))
+    record_id = cursor.fetchone()
     query = """
-        UPDATE bank_account
-        SET first_name = %s, last_name = %s, bank = %s, opening_date = %s, account_type = %s
-        WHERE account_number = %s
+        INSERT INTO register (my_movement, my_record)
+        VALUES (%s, %s)
     """
-    cursor.execute(query, (first_name, last_name, bank, opening_date, account_type, account_number))
+    cursor.execute(query, (movement_id, record_id[0]))
     conn.commit()
     conn.close()
-    return redirect('/')
+    return redirect('/movement')
 
 if __name__ == '__main__':
     app.run(debug=True)
