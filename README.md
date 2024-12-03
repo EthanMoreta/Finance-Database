@@ -2,7 +2,7 @@
 URI CSC 436 Fall 2024 Term Project
 
 ### Group Members:
-Ethan Moreta, Angel Castano, Nikolas Pelegrin
+Ethan Moreta, Angel Castano, Nicolas Pelegrin
 
 # Project Overview
 
