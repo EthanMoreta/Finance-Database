@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bank Accounts</title>
     <style>
+        /* General Styles */
         body {
             display: flex;
             flex-direction: column;
@@ -12,85 +13,124 @@
             height: 100vh;
             margin: 0;
             background-color: #343434;
+            font-family: Arial, sans-serif;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards;
         }
-        .button {
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: #FFD700;
+            font-size: 3rem;
+            margin-top: 20px;
+            animation: slideInFromTop 1.2s ease;
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h3 {
+            color: #FFD700;
+        }
+
+        .labels {
+            color: white;
+        }
+
+        .inputs {
             background-color: #1e1e1e;
             color: white;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #FFD700;
+            border-radius: 3px;
+        }
+
+        .button {
+            background-color: #1e1e1e;
+            color: #FFD700;
             padding: 15px 30px;
             margin: 10px;
-            border: none;
+            border: 2px solid #FFD700;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
             text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
         }
+
         .button:hover {
-            background-color: #181818;
+            background-color: #FFD700;
+            color: #1e1e1e;
+            transform: scale(1.1);
         }
-        form, a {
-            text-align: center;
+
+        .button:focus {
+            animation: pulse 0.6s infinite;
         }
-        .inputs {
-            background-color: #1e1e1e;
-            color: white;
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
-        .labels {
-            color: white;
+
+        /* Centering the button */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
         }
-        h1 {
-            color: #FFD700;
-        }
-        h3 {
-            color: #FFD700;
-        }
-        td {
-            color: white;
-        }
-        th {
-            color: white;
+
+        .button-container button {
+            padding: 15px 30px;
+            margin: 10px;
         }
     </style>
 </head>
 <body>
     <h1>Bank Accounts</h1>
-
-    <h3>Your Accounts</h3>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Account Number</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Bank</th>
-                <th>Opening Date</th>
-                <th>Account Type</th>
-                <th>Actions</th>
-                <th>Balance</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for account in accounts %}
-            <tr>
-                <td>{{ account.account_number }}</td>
-                <td>{{ account.first_name }}</td>
-                <td>{{ account.last_name }}</td>
-                <td>{{ account.bank }}</td>
-                <td>{{ account.opening_date }}</td>
-                <td>{{ account.account_type }}</td>
-                <td>{{ account.balance }}</td>
-                <td>
-                    <form action="/delete_account/{{ account.account_number }}" method="GET" style="display:inline;">
-                        <button type="submit" class="button">Delete</button>
-                    </form>
-                    <!-- Actualización pendiente con otro formulario -->
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <form action="/bank_account_search" method="POST">
+        <div style="text-align: center;">
+            <h3>Search Accounts</h3>
+        </div>
+        <label class="labels">First Name:</label>
+        <input type="text" name="first_name" required class="inputs"><br>
+        <label class="labels">Last Name:</label>
+        <input type="text" name="last_name" required class="inputs"><br>
+        <div class="button-container">
+            <button type="submit" class="button">Search</button>
+        </div>
+    </form>
+    <br>
+    <a href="/add_account">
+        <button type="button" class="button">Add Account</button>
+    </a>
+    <br>
+    <a href="/">
+        <button type="button" class="button">Back to menu</button>
+    </a>
 </body>
 </html>
-<br>
-<a href="/bank_account">
-    <button type="button" class="button">Back to accounts</button>
-</a>
