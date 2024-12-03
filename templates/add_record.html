@@ -27,7 +27,7 @@
         h1 {
             color: #FFD700;
             font-size: 2.5rem;
-            animation: slideInFromTop 1.2s ease, glow 1.5s infinite alternate;
+            animation: slideInFromTop 1.2s ease;
         }
 
         @keyframes slideInFromTop {
@@ -38,15 +38,6 @@
             to {
                 transform: translateY(0);
                 opacity: 1;
-            }
-        }
-
-        @keyframes glow {
-            0% {
-                text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700;
-            }
-            100% {
-                text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700;
             }
         }
 

@@ -14,20 +14,25 @@
             background-color: #343434;
         }
         .button {
-            background-color: #FFD700;
-            color: #1e1e1e;
+            background-color: #1e1e1e;
+            color: #FFD700;
             padding: 15px 30px;
             margin: 10px;
-            border: none;
-            border-radius: 8px;
+            border: 2px solid #FFD700;
+            border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
             text-decoration: none;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
         }
         .button:hover {
-            background-color: #FFC700;
+            background-color: #FFD700;
+            color: #1e1e1e;
             transform: scale(1.1);
+        }
+
+        .button:focus {
+            animation: pulse 0.6s infinite;
         }
         form, a {
             text-align: center;

@@ -38,17 +38,25 @@
             color: #FFD700;
         }
 
-        .labels {
-            color: white;
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin-bottom: 20px;
         }
 
-        .inputs {
-            background-color: #1e1e1e;
-            color: white;
-            padding: 8px;
-            margin: 5px 0;
+        th, td {
             border: 1px solid #FFD700;
-            border-radius: 3px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #1e1e1e;
+            color: #FFD700;
+        }
+
+        td {
+            color: white;
         }
 
         .button {
@@ -85,36 +93,46 @@
                 transform: scale(1);
             }
         }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-        }
     </style>
 </head>
 <body>
     <h1>Credit Cards</h1>
-    <form action="/credit_card_search" method="POST">
-        <h3 style="text-align: center;">Search Cards</h3>
-        <div style="text-align: left;"></div>
-            <label class="labels">First Name:</label>
-            <input type="text" name="first_name" required class="inputs"><br>
-            <label class="labels">Last Name:</label>
-            <input type="text" name="last_name" required class="inputs"><br>
-        </div>
-        <br>
-        <div class="button-container">
-            <button type="submit" class="button">Search</button>
-        </div>
-    </form>
+    <h3>Your Cards</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Card Number</th>
+                <th>Security Code</th>
+                <th>Card Type</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Expiration Date</th>
+                <th>Account Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for card in cards %}
+            <tr>
+                <td>{{ card.card_number }}</td>
+                <td>{{ card.security_code }}</td>
+                <td>{{ card.card_type }}</td>
+                <td>{{ card.first_name }}</td>
+                <td>{{ card.last_name }}</td>
+                <td>{{ card.expiration_date }}</td>
+                <td>{{ card.my_account }}</td>
+                <td>
+                    <form action="/delete_card/{{ card.card_number }}" method="GET" style="display:inline;">
+                        <button type="submit" class="button">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     <br>
-    <a href="/add_card">
-        <button type="button" class="button">Add Card</button>
-    </a>
-    <br>
-    <br>
-    <a href="/">
-        <button type="button" class="button">Back to menu</button>
+    <a href="/credit_card">
+        <button type="button" class="button">Back to cards</button>
     </a>
 </body>
 </html>
