@@ -14,18 +14,20 @@
             background-color: #343434;
         }
         .button {
-            background-color: #1e1e1e;
-            color: white;
+            background-color: #FFD700;
+            color: #1e1e1e;
             padding: 15px 30px;
             margin: 10px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
             text-decoration: none;
+            transition: transform 0.3s ease;
         }
         .button:hover {
-            background-color: #181818;
+            background-color: #FFC700;
+            transform: scale(1.1);
         }
         form, a {
             text-align: center;
@@ -33,33 +35,31 @@
         .inputs {
             background-color: #1e1e1e;
             color: white;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
         }
         .labels {
             color: white;
         }
-        h1 {
+        h1, h3 {
             color: #FFD700;
-        }
-        h3 {
-            color: #FFD700;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <h1>Register Movement</h1>
-    
-    <!-- Formulario para agregar o actualizar -->
-    <form action="/register_movement_form/{{movement_id}}" method="POST">
+    <form action="/register_movement_form/{{ movement_id }}" method="POST">
         <h3>Select Record to Register Movement</h3>
         <label class="labels">Record Name:</label>
         <input type="text" name="record_name" required class="inputs"><br>
         <br>
         <button type="submit" class="button">Register</button>
     </form>
-    
     <br>
     <a href="/movement">
         <button type="button" class="button">Back to movements</button>
     </a>
 </body>
-</html></a>
+</html>
