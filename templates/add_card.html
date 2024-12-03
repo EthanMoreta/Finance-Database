@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Credit Cards</title>
     <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         body {
             display: flex;
             flex-direction: column;
@@ -12,7 +23,9 @@
             height: 100vh;
             margin: 0;
             background-color: #343434;
+            animation: fadeIn 1s ease-out;
         }
+
         .button {
             background-color: #1e1e1e;
             color: white;
@@ -23,25 +36,51 @@
             font-size: 16px;
             cursor: pointer;
             text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
+
         .button:hover {
             background-color: #181818;
+            transform: scale(1.05);
         }
+
         form, a {
             text-align: center;
+            animation: fadeIn 1s ease-out;
         }
+
         .inputs {
             background-color: #1e1e1e;
             color: white;
+            width: 80%;
+            max-width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #FFD700;
+            border-radius: 5px;
+            transition: border-color 0.3s ease, transform 0.2s ease;
         }
+
+        .inputs:focus {
+            border-color: #FFA500;
+            outline: none;
+            transform: scale(1.03);
+        }
+
         .labels {
             color: white;
+            display: block;
+            margin: 10px 0 5px;
         }
+
         h1 {
             color: #FFD700;
+            animation: fadeIn 1s ease-out;
         }
+
         h3 {
             color: #FFD700;
+            animation: fadeIn 1s ease-out;
         }
     </style>
 </head>
@@ -68,9 +107,8 @@
         <button type="submit" class="button">Add Card</button>
     </form>
     
+    <a href="/credit_card">
+        <button type="button" class="button">Back to cards</button>
+    </a>
 </body>
 </html>
-<br>
-<a href="/credit_card">
-    <button type="button" class="button">Back to cards</button>
-</a>
