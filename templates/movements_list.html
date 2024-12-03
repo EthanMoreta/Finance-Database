@@ -62,6 +62,7 @@
                 <th>Amount</th>
                 <th>Date</th>
                 <th>Bank Account</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -71,6 +72,11 @@
                 <td>{{ movement.amount }}</td>
                 <td>{{ movement.movement_date }}</td>
                 <td>{{ movement.my_account }}</td>
+                <td> 
+                    <form action="/delete_register/{{ record_name.record_name }}/{{ movement.movement_id }}" method="GET" style="display:inline;">
+                        <button type="submit" class="button">Delete</button>
+                    </form>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

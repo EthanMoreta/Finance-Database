@@ -217,6 +217,17 @@ def delete_movement(movement_id):
     conn.close()
     return redirect('/movement')
 
+@app.route('/delete_register/<string:record_name>/<int:movement_id>')
+def delete_register(record_name,movement_id):
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor()
+    cursor.execute("SELECT record_id FROM record WHERE record_name = %s", (record_name,))
+    record_id = cursor.fetchone()
+    cursor.execute("DELETE FROM register WHERE my_movement = %s AND my_record = %s", (movement_id,record_id[0]))
+    conn.commit()
+    conn.close()
+    return redirect('/record')
+
 # Ruta para eliminar una tarjeta
 @app.route('/view_record/<int:record_id>')
 def view_record(record_id):
