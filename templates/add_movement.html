@@ -5,43 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movements</title>
     <style>
+        /* General Styles */
         body {
             display: flex;
             flex-direction: column;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #343434;
+            background-color: #2c2c2c;
+            color: #f4f4f4;
+            font-family: Arial, sans-serif;
         }
+
+        h1, h3 {
+            color: #FFD700;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        form {
+            animation: slideIn 1s ease-out;
+        }
+
+        .labels {
+            color: #f4f4f4;
+            font-size: 1.1rem;
+        }
+
+        .inputs {
+            background-color: #1e1e1e;
+            color: #f4f4f4;
+            border: 2px solid #FFD700;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            width: 80%;
+            font-size: 1rem;
+        }
+
         .button {
             background-color: #1e1e1e;
-            color: white;
+            color: #FFD700;
             padding: 15px 30px;
             margin: 10px;
-            border: none;
+            border: 2px solid #FFD700;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
             text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
+
         .button:hover {
-            background-color: #181818;
+            background-color: #FFD700;
+            color: #1e1e1e;
+            transform: scale(1.05);
         }
-        form, a {
+
+        a {
             text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
         }
-        .inputs {
-            background-color: #1e1e1e;
-            color: white;
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
-        .labels {
-            color: white;
-        }
-        h1 {
-            color: #FFD700;
-        }
-        h3 {
-            color: #FFD700;
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -50,19 +102,18 @@
     
     <form action="/add_movement_form" method="POST">
         <h3>Add Movement</h3>
-        <label class="labels">Amount:</label>
+        <label class="labels">Amount:</label><br>
         <input type="number" name="amount" required class="inputs"><br>
-        <label class="labels">Movement Date:</label>
+        <label class="labels">Movement Date:</label><br>
         <input type="date" name="date" required class="inputs"><br>
-        <label class="labels">Account Number:</label>
+        <label class="labels">Account Number:</label><br>
         <input type="number" name="account_number" required class="inputs"><br>
         <br>
         <button type="submit" class="button">Add Movement</button>
     </form>
-    
+    <br>
+    <a href="/movement">
+        <button type="button" class="button">Back to movements</button>
+    </a>
 </body>
 </html>
-<br>
-<a href="/movement">
-    <button type="button" class="button">Back to movements</button>
-</a>
