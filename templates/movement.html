@@ -14,18 +14,20 @@
             background-color: #343434;
         }
         .button {
-            background-color: #1e1e1e;
-            color: white;
+            background-color: #FFD700;
+            color: #1e1e1e;
             padding: 15px 30px;
             margin: 10px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
             text-decoration: none;
+            transition: transform 0.3s ease;
         }
         .button:hover {
-            background-color: #181818;
+            background-color: #FFC700;
+            transform: scale(1.1);
         }
         form, a {
             text-align: center;
@@ -33,38 +35,65 @@
         .inputs {
             background-color: #1e1e1e;
             color: white;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
         }
         .labels {
             color: white;
         }
-        h1 {
+        h1, h3 {
             color: #FFD700;
+            text-align: center;
         }
-        h3 {
-            color: #FFD700;
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        td, th {
+            color: white;
+            border: 1px solid #FFD700;
+            text-align: center;
+            padding: 10px;
         }
     </style>
 </head>
 <body>
     <h1>Movements</h1>
-    
-    <!-- Formulario para agregar o actualizar -->
-    <form action="/movement_search" method="POST">
-        <h3>Search Movements from Account</h3>
-        <label class="labels">Account Number:</label>
-        <input type="number" name="account_number" required class="inputs"><br>
-        <br>
-        <button type="submit" class="button">Search</button>
-    </form>
-    
+    <h3>Your Movements</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Account</th>
+                <th>Delete</th>
+                <th>Register</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for movement in movements %}
+            <tr>
+                <td>{{ movement.amount }}</td>
+                <td>{{ movement.movement_date }}</td>
+                <td>{{ movement.my_account }}</td>
+                <td>
+                    <form action="/delete_movement/{{ movement.movement_id }}" method="GET">
+                        <button type="submit" class="button">Delete</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/register_movement/{{ movement.movement_id }}" method="GET">
+                        <button type="submit" class="button">Register</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/movement">
+        <button type="button" class="button">Back to movements</button>
+    </a>
 </body>
 </html>
-<br>
-<a href="/add_movement">
-    <button type="button" class="button">Add Movement</button>
-</a>
-<br>
-<br>
-<a href="/">
-    <button type="button" class="button">Back to menu</button>
-</a>
