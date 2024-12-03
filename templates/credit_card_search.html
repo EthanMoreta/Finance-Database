@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Credit Cards</title>
     <style>
+        /* General Styles */
         body {
             display: flex;
             flex-direction: column;
@@ -12,85 +13,108 @@
             height: 100vh;
             margin: 0;
             background-color: #343434;
+            font-family: Arial, sans-serif;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards;
         }
-        .button {
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: #FFD700;
+            font-size: 3rem;
+            margin-top: 20px;
+            animation: slideInFromTop 1.2s ease;
+        }
+
+        h3 {
+            color: #FFD700;
+        }
+
+        .labels {
+            color: white;
+        }
+
+        .inputs {
             background-color: #1e1e1e;
             color: white;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #FFD700;
+            border-radius: 3px;
+        }
+
+        .button {
+            background-color: #1e1e1e;
+            color: #FFD700;
             padding: 15px 30px;
             margin: 10px;
-            border: none;
+            border: 2px solid #FFD700;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
             text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
         }
+
         .button:hover {
-            background-color: #181818;
+            background-color: #FFD700;
+            color: #1e1e1e;
+            transform: scale(1.1);
         }
-        form, a {
-            text-align: center;
+
+        .button:focus {
+            animation: pulse 0.6s infinite;
         }
-        .inputs {
-            background-color: #1e1e1e;
-            color: white;
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
-        .labels {
-            color: white;
-        }
-        h1 {
-            color: #FFD700;
-        }
-        h3 {
-            color: #FFD700;
-        }
-        td {
-            color: white;
-        }
-        th {
-            color: white;
+
+        .button-container {
+            display: flex;
+            justify-content: center;
         }
     </style>
 </head>
 <body>
     <h1>Credit Cards</h1>
-
-    <h3>Your Cards</h3>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Card Number</th>
-                <th>Security Code</th>
-                <th>Card Type</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Expiration Date</th>
-                <th>Account Number</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for card in cards %}
-            <tr>
-                <td>{{ card.card_number }}</td>
-                <td>{{ card.security_code }}</td>
-                <td>{{ card.card_type }}</td>
-                <td>{{ card.first_name }}</td>
-                <td>{{ card.last_name }}</td>
-                <td>{{ card.expiration_date }}</td>
-                <td>{{ card.my_account }}</td>
-                <td>
-                    <form action="/delete_card/{{ card.card_number }}" method="GET" style="display:inline;">
-                        <button type="submit" class="button">Delete</button>
-                    </form>
-                    <!-- Actualización pendiente con otro formulario -->
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <form action="/credit_card_search" method="POST">
+        <h3 style="text-align: center;">Search Cards</h3>
+        <div style="text-align: left;"></div>
+            <label class="labels">First Name:</label>
+            <input type="text" name="first_name" required class="inputs"><br>
+            <label class="labels">Last Name:</label>
+            <input type="text" name="last_name" required class="inputs"><br>
+        </div>
+        <br>
+        <div class="button-container">
+            <button type="submit" class="button">Search</button>
+        </div>
+    </form>
+    <br>
+    <a href="/add_card">
+        <button type="button" class="button">Add Card</button>
+    </a>
+    <br>
+    <br>
+    <a href="/">
+        <button type="button" class="button">Back to menu</button>
+    </a>
 </body>
 </html>
-<br>
-<a href="/credit_card">
-    <button type="button" class="button">Back to cards</button>
-</a>
