@@ -46,54 +46,24 @@
             color: #FFD700;
             text-align: center;
         }
-        table {
-            width: 80%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        td, th {
-            color: white;
-            border: 1px solid #FFD700;
-            text-align: center;
-            padding: 10px;
-        }
     </style>
 </head>
 <body>
     <h1>Movements</h1>
-    <h3>Your Movements</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Amount</th>
-                <th>Date</th>
-                <th>Account</th>
-                <th>Delete</th>
-                <th>Register</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for movement in movements %}
-            <tr>
-                <td>{{ movement.amount }}</td>
-                <td>{{ movement.movement_date }}</td>
-                <td>{{ movement.my_account }}</td>
-                <td>
-                    <form action="/delete_movement/{{ movement.movement_id }}" method="GET">
-                        <button type="submit" class="button">Delete</button>
-                    </form>
-                </td>
-                <td>
-                    <form action="/register_movement/{{ movement.movement_id }}" method="GET">
-                        <button type="submit" class="button">Register</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="/movement">
-        <button type="button" class="button">Back to movements</button>
+    <form action="/movement_search" method="POST">
+        <h3>Search Movements from Account</h3>
+        <label class="labels">Account Number:</label>
+        <input type="number" name="account_number" required class="inputs"><br>
+        <br>
+        <button type="submit" class="button">Search</button>
+    </form>
+    <br>
+    <a href="/add_movement">
+        <button type="button" class="button">Add Movement</button>
+    </a>
+    <br>
+    <a href="/">
+        <button type="button" class="button">Back to menu</button>
     </a>
 </body>
 </html>
