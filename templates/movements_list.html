@@ -14,18 +14,20 @@
             background-color: #343434;
         }
         .button {
-            background-color: #1e1e1e;
-            color: white;
+            background-color: #FFD700;
+            color: #1e1e1e;
             padding: 15px 30px;
             margin: 10px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
             text-decoration: none;
+            transition: transform 0.3s ease;
         }
         .button:hover {
-            background-color: #181818;
+            background-color: #FFC700;
+            transform: scale(1.1);
         }
         form, a {
             text-align: center;
@@ -33,29 +35,34 @@
         .inputs {
             background-color: #1e1e1e;
             color: white;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
         }
         .labels {
             color: white;
         }
-        h1 {
+        h1, h3 {
             color: #FFD700;
+            text-align: center;
         }
-        h3 {
-            color: #FFD700;
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px 0;
         }
-        td {
+        td, th {
             color: white;
-        }
-        th {
-            color: white;
+            border: 1px solid #FFD700;
+            text-align: center;
+            padding: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Record: {{record_name.record_name}}</h1>
-    
+    <h1>Record: {{ record_name.record_name }}</h1>
     <h3>Movements</h3>
-    <table border="1">
+    <table>
         <thead>
             <tr>
                 <th>Movement</th>
@@ -72,8 +79,8 @@
                 <td>{{ movement.amount }}</td>
                 <td>{{ movement.movement_date }}</td>
                 <td>{{ movement.my_account }}</td>
-                <td> 
-                    <form action="/delete_register/{{ record_name.record_name }}/{{ movement.movement_id }}" method="GET" style="display:inline;">
+                <td>
+                    <form action="/delete_register/{{ record_name.record_name }}/{{ movement.movement_id }}" method="GET">
                         <button type="submit" class="button">Delete</button>
                     </form>
                 </td>
@@ -81,9 +88,8 @@
             {% endfor %}
         </tbody>
     </table>
+    <a href="/record">
+        <button type="button" class="button">Back to records</button>
+    </a>
 </body>
 </html>
-<br>
-<a href="/record">
-    <button type="button" class="button">Back to records</button>
-</a>
